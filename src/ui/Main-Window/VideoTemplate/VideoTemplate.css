@@ -1,0 +1,49 @@
+.video-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.video-container img {
+  cursor: pointer;
+}
+
+.thumbnail-container img {
+  width: 220px;
+  height: 122px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.meta-info-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.channel-pic img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  ;
+}
+
+.text-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+}
+
+.channel-name,
+.video-stats {
+  font-size: 0.9rem;
+  color: #ccc;
+}
