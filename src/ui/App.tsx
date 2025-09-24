@@ -6,22 +6,45 @@ import VideoTemplate from './Main-Window/VideoTemplate/VideoTemplate';
 
 function App() {
   const [videos, setVideos] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("music");
+  const [nextPageToken, setNextPageToken] = useState<string | null>(null);
 
-  // função que o SearchBar vai chamar
-  async function handleSearch(query: string) {
-    const data = await getData(query);
-    setVideos(data);
+  async function handleSearch(newQuery: string) {
+    setQuery(newQuery);
+    const { items, nextPageToken } = await getData(newQuery);
+    setVideos(items);
+    setNextPageToken(nextPageToken ?? null);
   }
 
-  // opcional: carregar algo inicial
+  async function loadMore() {
+    if (!nextPageToken || loading) return;
+    setLoading(true);
+
+    const { items, nextPageToken: newToken } = await getData(query, nextPageToken);
+    setVideos(prev => [...prev, ...items]);
+    setNextPageToken(newToken ?? null);
+
+    setLoading(false);
+  }
+
   useEffect(() => {
-    handleSearch(""); // busca inicial vazia ou default
+    handleSearch(query); // busca inicial vazia ou default
   }, []);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        loadMore();
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [query, nextPageToken]);
 
   return (
     <>
-      <div className="search-bar-container">
-        {/* Passa a função como prop */}
+      <div className="header">
         <SearchBar placeholderText="search for a video..." onSearch={handleSearch} />
       </div>
       <div className="results-div">
@@ -33,7 +56,6 @@ function App() {
             channelName={video.snippet.channelTitle}
             views={video.statistics?.viewCount ?? "0"}
             timePassed={new Date(video.snippet.publishedAt).toLocaleDateString()}
-            channelPic={"https://via.placeholder.com/48"} // temp fallback
           />
         ))}
       </div>

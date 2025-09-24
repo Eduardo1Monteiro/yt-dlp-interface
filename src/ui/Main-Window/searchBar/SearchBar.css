@@ -1,5 +1,6 @@
 .searchBarContainer {
   display: flex;
+  flex: 2;
   flex-direction: row;
   background-color: none;
   padding: 0px;
@@ -17,7 +18,7 @@
   background-color: rgb(250, 250, 250);
   border-radius: 3rem;
   font-size: 24px;
-  margin: 0 -5rem 0 0;
+  margin: 0 -6rem 0 0;
   border: none;
   outline: none;
   box-shadow: none;

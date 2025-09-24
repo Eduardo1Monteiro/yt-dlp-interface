@@ -9,10 +9,11 @@ body {
   background-color: rgb(25, 25, 25);
 }
 
-.search-bar-container {
+.header {
+  display: flex;
   width: 90%;
   height: 120px;
-  margin: 0 auto;
+  margin: 0 0 0 0;
 }
 
 .results-div {
