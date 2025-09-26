@@ -50,12 +50,13 @@ function App() {
       <div className="results-div">
         {videos.map(video => (
           <VideoTemplate
-            key={video.id.videoId ?? video.id} // cuidado: às vezes vem id diferente no YouTube API
+            key={video.id.videoId ?? video.id}
             title={video.snippet.title}
             thumbnail={video.snippet.thumbnails?.high?.url ?? ""}
             channelName={video.snippet.channelTitle}
             views={video.statistics?.viewCount ?? "0"}
             timePassed={new Date(video.snippet.publishedAt).toLocaleDateString()}
+            link={`https://www.youtube.com/watch?v=${video.id}`}
           />
         ))}
       </div>

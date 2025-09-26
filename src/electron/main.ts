@@ -8,7 +8,7 @@ function createMainWindow(): void {
     height: 800,
   });
   if (isDev()) {
-    mainWindow.loadURL('http://localhost:4747');
+    mainWindow.loadURL('http://localhost:5173');
   } else {
     mainWindow.loadFile(path.join(app.getAppPath(), '/dist-react/index.html'));
   }

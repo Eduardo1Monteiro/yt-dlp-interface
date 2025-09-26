@@ -1,17 +1,17 @@
 import './VideoTemplate.css';
 
 
-function VideoTemplate(props: { thumbnail: string, title: string, channelName: string, views: string, timePassed: string }) {
+function VideoTemplate(props: { thumbnail: string, title: string, channelName: string, views: string, timePassed: string, link: string }) {
   return (
     <div className="video-container">
       <div className="thumbnail-container">
-        <img src={props.thumbnail} />
+        <a href={props.link}><img src={props.thumbnail} /></a>
       </div>
       <div className="meta-info-container">
         <div className="text-info-container">
-          <p className="title">
+          <a href={props.link} className="title">
             {props.title}
-          </p>
+          </a>
           <p className="channel-name">
             {props.channelName}
           </p>
