@@ -1,4 +1,4 @@
-const apiKey = import.meta.env.VITE_API_KEY;
+const apiKey = import.meta.env.VITE_API_KEY2;
 
 if (!apiKey) {
   throw new Error('apiKey isn’t defined in .env');
